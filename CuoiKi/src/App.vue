@@ -82,7 +82,7 @@ onUnmounted(() => {
             <ul class="space-y-2 text-xs text-slate-600">
               <li>Hotline: 1900-LUXE (08:00 - 21:00)</li>
               <li>Email: contact@luxeaccessories.vn</li>
-              <li>Bảo hành 12 tháng chính hãng</li>
+              <li>Bảo hành 12 tháng chính hãngg</li>
               <li>Miễn phí đổi trả trong 7 ngày</li>
             </ul>
           </div>
