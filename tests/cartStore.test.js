@@ -68,6 +68,18 @@ describe('cart store', () => {
     expect(store.items).toEqual([])
   })
 
+  it('checks cumulative stock when adding another quantity to an existing cart line', () => {
+    const store = useCartStore()
+    const { product, variant } = createInventory(3)
+
+    expect(store.addToCart(product, variant, 2)).toBe(true)
+    expect(store.addToCart(product, variant, 2)).toBe(false)
+    expect(store.totalItems).toBe(2)
+    expect(store.items[0].quantity).toBe(2)
+    expect(store.addToCart(product, variant, 1)).toBe(true)
+    expect(store.items[0].quantity).toBe(3)
+  })
+
   it('restores persisted cart snapshots and respects the inventory boundary', () => {
     const original = new ShoppingCart()
     const { product, variant } = createInventory(4)

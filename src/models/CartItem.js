@@ -58,13 +58,13 @@ export class CartItem {
    * @returns {boolean}
    */
   increaseQuantity(amount = 1) {
+    if (!Number.isInteger(amount) || amount <= 0) return false;
+
     const targetQty = this.quantity + amount;
     if (this.variant.isAvailable(targetQty)) {
       this.quantity = targetQty;
       return true;
     }
-    // Nếu vượt quá tồn kho, đặt về mức tồn kho tối đa
-    this.quantity = this.variant.stockQuantity;
     return false;
   }
 
@@ -81,11 +81,13 @@ export class CartItem {
    * @param {number} qty
    */
   setQuantity(qty) {
-    const parsed = Math.max(1, Number(qty) || 1);
+    const parsed = Number(qty);
+    if (!Number.isInteger(parsed) || parsed < 1) return;
+
     if (this.variant.isAvailable(parsed)) {
       this.quantity = parsed;
     } else {
-      this.quantity = Math.max(1, this.variant.stockQuantity);
+      this.quantity = this.variant.stockQuantity;
     }
   }
 

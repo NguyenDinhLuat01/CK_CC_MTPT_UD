@@ -26,6 +26,7 @@ export class ShoppingCart {
    */
   addItem(product, variant, quantity = 1) {
     if (!product || !variant) return false;
+    if (!variant.isAvailable(quantity)) return false;
 
     const itemKey = `${product.id}__${variant.sku}`;
     const existingIndex = this.items.findIndex(item => item.getItemKey() === itemKey);

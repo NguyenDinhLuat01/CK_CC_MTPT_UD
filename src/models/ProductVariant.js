@@ -27,7 +27,12 @@ export class ProductVariant {
    * @returns {boolean}
    */
   isAvailable(requestedQty = 1) {
-    return this.stockQuantity >= requestedQty && this.stockQuantity > 0;
+    return (
+      Number.isInteger(requestedQty) &&
+      requestedQty > 0 &&
+      Number.isInteger(this.stockQuantity) &&
+      this.stockQuantity >= requestedQty
+    );
   }
 
   /**
